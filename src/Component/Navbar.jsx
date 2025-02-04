@@ -1,51 +1,239 @@
-import { useState, useContext } from "react";
-import { FaBars, FaTimes, FaGithub, FaLinkedin } from "react-icons/fa";
+import {
+  FaBars,
+  FaTimes,
+  FaGithub,
+  FaLinkedin,
+  FaFacebook,
+} from "react-icons/fa";
+import { MdDarkMode, MdLightMode } from "react-icons/md";
+
 import { HiOutlineMail } from "react-icons/hi";
 import { BsFillPersonLinesFill } from "react-icons/bs";
-import { MdDarkMode, MdLightMode } from "react-icons/md";
 import logo from "../assets/logo.png";
-import { Link } from "react-scroll";
+import {Link} from "react-scroll";
 import { ThemeContext } from "../Component/ThemeContext";
+import { useState, useContext } from "react";
+
 
 const Navbar = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
-  const [nav, setNav] = useState(false);
-  const handleClick = () => setNav(!nav);
+
+  const [nav, setnav] = useState(false);
+  const handleClick = () => setnav(!nav);
 
   return (
-    <div className="fixed w-full h-[80px] flex justify-between items-center px-4 bg-white dark:bg-[#0a192f] text-gray-900 dark:text-gray-300 shadow-md z-50">
-      {/* Logo */}
+    <div
+      className='
+    fixed 
+    w-full 
+    h-[80px] 
+    flex 
+    justify-between 
+    items-center
+    px-4
+    bg-[#0a192f]
+    text-gray-300
+    '>
       <div>
-        <img src={logo} alt="Logo" style={{ width: "50px" }} />
+        <img src={logo} alt='Logo image' style={{ width: "50px" }} />
       </div>
-
       {/* Menu */}
-      <ul className="hidden md:flex">
-        <li><Link to="home" smooth={true} duration={500}>Home</Link></li>
-        <li><Link to="about" smooth={true} duration={500}>About</Link></li>
-        <li><Link to="skills" smooth={true} duration={500}>Skills</Link></li>
-        <li><Link to="work" smooth={true} duration={500}>Work</Link></li>
-        <li><Link to="contact" smooth={true} duration={500}>Contact</Link></li>
-      </ul>
+      <ul
+        className='
+        hidden md:flex
 
-      {/* Bouton de mode sombre */}
-      <button onClick={toggleTheme} className="text-xl ml-4">
+        '>
+          <li> 
+          <button onClick={toggleTheme} className="text-xl ml-4">
         {theme === "dark" ? <MdLightMode /> : <MdDarkMode />}
       </button>
+          </li>
+        <li>
+          <Link to='home' smooth={true} duration={500}>
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link to='about' smooth={true} duration={500}>
+            About
+          </Link>
+        </li>
+        <li>
+          {" "}
+          <Link to='skills' smooth={true} duration={500}>
+            Skills
+          </Link>
+        </li>
+        <li>
+          <Link to='work' smooth={true} duration={500}>
+            Work
+          </Link>
+        </li>
+        <li>
+          <Link to='contact' smooth={true} duration={500}>
+            Contact
+          </Link>
+        </li>
+      </ul>
+      {/* Hamburger */}
 
-      {/* Hamburger Icon */}
-      <div onClick={handleClick} className="md:hidden z-10 cursor-pointer">
-        {!nav ? <FaBars /> : <FaTimes />}
+      <div onClick={handleClick} className='md:hidden z-10'>
+        <FaBars />
       </div>
 
-      {/* Menu mobile */}
-      <ul className={`absolute top-0 left-0 w-full h-screen bg-white dark:bg-[#0a192f] flex flex-col justify-center items-center transition-transform transform ${nav ? "translate-x-0" : "-translate-x-full"}`}>
-        <li className="py-6 text-4xl"><Link onClick={handleClick} to="home" smooth={true} duration={500}>Home</Link></li>
-        <li className="py-6 text-4xl"><Link onClick={handleClick} to="about" smooth={true} duration={500}>About</Link></li>
-        <li className="py-6 text-4xl"><Link onClick={handleClick} to="skills" smooth={true} duration={500}>Skills</Link></li>
-        <li className="py-6 text-4xl"><Link onClick={handleClick} to="work" smooth={true} duration={500}>Work</Link></li>
-        <li className="py-6 text-4xl"><Link onClick={handleClick} to="contact" smooth={true} duration={500}>Contact</Link></li>
+      {/* Mobile menu */}
+      <ul
+        className={
+          !nav
+            ? "hidden"
+            : "absolute top-0 left-0 w-full h-screen bg-[#0a192f] flex flex-col justify-center items-center"
+        }>
+        <li className='py-6 text-4xl'>
+          <Link onClick={handleClick} to='home' smooth={true} duration={500}>
+            Home
+          </Link>
+        </li>
+        <li className='py-6 text-4xl'>
+          <Link onClick={handleClick} to='about' smooth={true} duration={500}>
+            About
+          </Link>
+        </li>
+        <li className='py-6 text-4xl'>
+          <Link onClick={handleClick} to='skills' smooth={true} duration={500}>
+            Skills
+          </Link>
+        </li>
+        <li className='py-6 text-4xl'>
+          <Link onClick={handleClick} to='work' smooth={true} duration={500}>
+            Work
+          </Link>
+        </li>
+        <li className='py-6 text-4xl'>
+          <Link onClick={handleClick} to='contact' smooth={true} duration={500}>
+            Contact
+          </Link>
+        </li>
       </ul>
+
+      {/* Social icons */}
+      <div
+        className='
+        hidden
+        lg:flex
+      flex 
+      fixed
+       flex-col 
+        top-[35%]
+        left-0
+
+        '>
+        <ul>
+          <li
+            className='
+               w-[160px] 
+               h-[60px] 
+               flex 
+               justify-between 
+               items-center
+              ml-[-100px]
+              hover:ml-[-10px]
+              duration-300
+              bg-blue-600
+              
+               '>
+            <a
+              className='
+
+                flex 
+                justify-between
+                 items-center
+                  w-full
+                  text-gray-300
+                  font-semibold
+                  '
+              href='https://www.linkedin.com/in/karkori-mehdi-1bb625216/'>
+              Linkedin <FaLinkedin size={30} />
+            </a>
+          </li>
+          <li
+            className='
+               w-[160px] 
+               h-[60px] 
+               flex 
+               justify-between 
+               items-center
+              ml-[-100px]
+              hover:ml-[-10px]
+              duration-300
+              bg-[#333333]
+               '>
+            <a
+              className='
+
+                flex 
+                justify-between
+                 items-center
+                  w-full
+                  text-gray-300
+                  font-semibold
+                  '
+              href='https://github.com/mehdikr97'>
+              Github <FaGithub size={30} />
+            </a>
+          </li>
+          <li
+            className='
+               w-[160px] 
+               h-[60px] 
+               flex 
+               justify-between 
+               items-center
+              ml-[-100px]
+              hover:ml-[-10px]
+              duration-300
+              bg-[#6fc2b0]
+               '>
+            <a
+              className='
+
+                flex 
+                justify-between
+                 items-center
+                  w-full
+                  text-gray-300
+                  font-semibold
+                  '
+              href=''>
+              Email <HiOutlineMail size={30} />
+            </a>
+          </li>
+          <li
+            className='
+               w-[160px] 
+               h-[60px] 
+               flex 
+               justify-between 
+               items-center
+              ml-[-100px]
+              hover:ml-[-10px]
+              duration-300
+              bg-[#565f69]
+               '>
+            <a
+              className='
+
+                flex 
+                justify-between
+                 items-center
+                  w-full
+                  text-gray-300
+font-semibold                  '
+              href=''>
+              Resume <BsFillPersonLinesFill size={30} />
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };
